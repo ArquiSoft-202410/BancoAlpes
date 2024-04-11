@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_ID="<id-proyecto>"
+PROJECT_ID="bancoalpes-419917"
 ZONE="us-central1-a"
 
 gcloud deployment-manager deployments create banco-alpes-deployment --config deployment.yaml --project $PROJECT_ID
