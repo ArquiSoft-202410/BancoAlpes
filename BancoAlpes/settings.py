@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'BancoAlpes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'banco_alpes_DB',
+        'NAME': 'banco_alpes_db',
         'USER': 'banco_alpes',
         'PASSWORD': 'banco_alpes',
         'HOST': '10.128.0.52',
