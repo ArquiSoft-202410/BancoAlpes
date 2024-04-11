@@ -1,0 +1,17 @@
+_format_version: "2.1"
+
+services:
+  - host: banco_alpes_upstream
+    name: banco_alpes_service
+    protocol: http
+    routes:
+      - name: banco_alpes
+        paths:
+          - /
+        strip_path: false
+
+upstreams:
+  - name: banco_alpes_upstream
+    targets:
+      - target: 10.128.0.53:8080
+        weight: 100

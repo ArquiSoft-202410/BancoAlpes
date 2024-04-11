@@ -21,3 +21,4 @@ chmod +x deployment.sh
 ```console
 ./deployment.sh
 ```
+### Configurar instancias

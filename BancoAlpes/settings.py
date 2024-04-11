@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ASR1'
+    'ASR1',
+    'ASR2',
 ]
 
 MIDDLEWARE = [
@@ -77,10 +78,10 @@ WSGI_APPLICATION = 'BancoAlpes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'monitoring_db',
-        'USER': 'monitoring_user',
-        'PASSWORD': 'isis2503',
-        'HOST': '10.63.224.3',
+        'NAME': 'banco_alpes_DB',
+        'USER': 'banco_alpes',
+        'PASSWORD': 'banco_alpes',
+        'HOST': '10.128.0.52',
         'PORT': '',
     }
 }
