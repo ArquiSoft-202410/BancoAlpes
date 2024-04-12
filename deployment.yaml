@@ -79,6 +79,7 @@ resources:
           cd /apps
           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
           cd BancoAlpes
+          sudo git pull
           if [ ! -f "/etc/startup-script-has-run" ]; then
             sudo apt-get install ca-certificates curl gnupg lsb-release -y
             sudo mkdir -m 0755 -p /etc/apt/keyrings
@@ -166,6 +167,7 @@ resources:
           cd /apps
           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
           cd BancoAlpes
+          sudo git pull
           sudo pip3 install -r requirements.txt
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
@@ -204,6 +206,7 @@ resources:
           cd /apps
           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
           cd BancoAlpes
+          sudo git pull
           sudo pip3 install -r requirements.txt
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
@@ -242,6 +245,7 @@ resources:
           cd /apps
           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
           cd BancoAlpes
+          sudo git pull
           sudo pip3 install -r requirements.txt
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
