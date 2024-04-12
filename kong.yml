@@ -15,3 +15,7 @@ upstreams:
     targets:
       - target: 10.128.0.53:8080
         weight: 100
+      - target: 10.128.0.54:8080
+        weight: 100
+      - target: 10.128.0.55:8080
+        weight: 100
