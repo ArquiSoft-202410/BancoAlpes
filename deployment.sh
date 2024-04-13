@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_ID="bancoalpes-419917"
+PROJECT_ID="arquisoft-202410"
 ZONE="us-central1-a"
 
 gcloud deployment-manager deployments create banco-alpes-deployment --config deployment.yaml --project $PROJECT_ID
