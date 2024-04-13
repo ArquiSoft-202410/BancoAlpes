@@ -19,14 +19,14 @@ upstreams:
         weight: 100
       - target: 10.128.0.55:8080
         weight: 100
-  healthchecks:
-    threshold: 50
-    active:
-      http_path: /health/
-      timeout: 5
-      healthy:
-        successes: 2
-        interval: 5
-      unhealthy:
-        tcp_failures: 2
-        interval: 5
+  #healthchecks:
+  #  threshold: 50
+  #  active:
+  #    http_path: /health/
+  #    timeout: 5
+  #    healthy:
+  #      successes: 2
+  #      interval: 5
+  #    unhealthy:
+  #      tcp_failures: 2
+  #      interval: 5
