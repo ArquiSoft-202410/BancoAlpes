@@ -21,4 +21,16 @@ chmod +x deployment.sh
 ```console
 ./deployment.sh
 ```
-### Configurar instancias
+### Eliminar proyecto
+```console
+gcloud deployment-manager deployments delete banco-alpes-deployment
+```
+### Ver procesos en segundo plano
+```console
+ps -ef | grep python
+```
+### Quitar procesos en segundo plano
+```console
+sudo kill 
+```
+y despues el id del proceso
