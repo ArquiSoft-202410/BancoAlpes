@@ -17,17 +17,21 @@
           <h5 class="card-title">Component B</h5>
           <p class="card-text text-center">State: Inactive</p>
           <form method="post">
-                {% csrf_token %}
-                <input type="hidden" name="instance" value="banco-alpes-b">
-                <button type="submit" class="btn btn-info">Activate</button>
-            </form>        
+            {% csrf_token %}
+            <input type="hidden" name="instance" value="banco-alpes-b">
+            <button type="submit" class="btn btn-info">Activate</button>
+          </form>        
         </div>
     </div>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Component C</h5>
           <p class="card-text text-center">State: Inactive</p>
-          <button type="button" class="btn btn-info">Activate</button>
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="instance" value="banco-alpes-c">
+            <button type="submit" class="btn btn-info">Activate</button>
+          </form> 
         </div>
     </div>
 </div>
