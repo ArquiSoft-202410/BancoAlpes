@@ -20,6 +20,7 @@ from BancoAlpes import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+    path('health/', views.health, name='health'),
     path('request/', include('ASR1.urls')),
     path('deployment/', include('ASR2.urls'))
 ]
