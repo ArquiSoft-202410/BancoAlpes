@@ -334,11 +334,6 @@ resources:
         value: |
           #!/bin/bash
           sudo apt-get update
-          sudo apt install rabbitmq-server -y
-          sudo rabbitmq-plugins enable rabbitmq_management
-          sudo rabbitmqctl add_user banco_alpes banco_alpes_password
-          sudo rabbitmqctl set_user_tags banco_alpes administrator
-          sudo rabbitmqctl set_permissions -p / banco_alpes ".*" ".*" ".*"
           sudo apt install python3-pip -y
           sudo mkdir /apps
           cd /apps
@@ -348,4 +343,9 @@ resources:
           sudo pip3 install -r requirements.txt
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
+          sudo apt install rabbitmq-server -y
+          sudo rabbitmq-plugins enable rabbitmq_management
+          sudo rabbitmqctl add_user banco_alpes banco_alpes_password
+          sudo rabbitmqctl set_user_tags banco_alpes administrator
+          sudo rabbitmqctl set_permissions -p / banco_alpes ".*" ".*" ".*"
           sudo nohup python3 subscriber.py &
