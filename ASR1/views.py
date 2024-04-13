@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import DatosPersonalesForm
 from .logic.producer import sendRequest
 
-def index(request):
+def form(request):
     if request.method == "POST":
         form = DatosPersonalesForm(request.POST)
         if form.is_valid():
@@ -20,4 +20,4 @@ def index(request):
             print(form.errors)
     else:
         form = DatosPersonalesForm()
-    return render(request, "ASR1/index.html", {'form': form})
+    return render(request, "ASR1/form.html", {'form': form})

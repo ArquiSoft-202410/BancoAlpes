@@ -1,0 +1,47 @@
+{% extends "app.html" %}
+
+{% block navDeploy %}active{% endblock %}
+{% load static %}
+
+{% block content %}
+<h2 class="fs-3 fw-bold mb-4 mt-2">Componentes desplegados</h2>
+<hr class="mt-1">
+<div class="row row-cols-auto justify-content-around">
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/server.png' %}" class="card-img-top p-3" alt="Component A">
+        <div class="card-body">
+          <h5 class="card-title">Component A</h5>
+          <div class="d-flex justify-content-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="state" width="50" height="50">
+          </div>
+          <p class="card-text text-center">State: Active</p>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/server.png' %}" class="card-img-top p-3" alt="Component A">
+        <div class="card-body">
+          <h5 class="card-title">Component B</h5>
+          <div class="d-flex justify-content-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/10541/10541435.png" alt="state" width="50" height="50">
+          </div>
+          <p class="card-text text-center">State: Inactive</p>
+          <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="instance" value="banco-alpes-b">
+                <button type="submit" class="btn btn-info">Activate</button>
+            </form>        
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/server.png' %}" class="card-img-top p-3" alt="Component A">
+        <div class="card-body">
+          <h5 class="card-title">Component C</h5>
+          <div class="d-flex justify-content-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/10541/10541435.png" alt="state" width="50" height="50">
+          </div>
+          <p class="card-text text-center">State: Inactive</p>
+          <button type="button" class="btn btn-info">Activate</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

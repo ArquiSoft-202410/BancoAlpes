@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from ASR1 import views
+from ASR2 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.form, name='request'),
+    path('', views.deployment, name='deployment'),
 ]
