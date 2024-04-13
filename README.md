@@ -15,7 +15,7 @@ cd BancoAlpes
 ```
 #### 3. Permisos de despliegue
 ```console
-chmod +x deployment.sh
+sudo chmod +x deployment.sh
 ```
 #### 4. Ejecutar Script de despliegue
 ```console
