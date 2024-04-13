@@ -1,9 +1,9 @@
 import pika
 import json
 
-rabbit_host = '10.128.0.2'
-rabbit_user = 'monitoring_user'
-rabbit_password = 'isis2503'
+rabbit_host = '10.128.0.57'
+rabbit_user = 'banco_alpes'
+rabbit_password = 'banco_alpes_password'
 exchange = 'ASR1_OTPs'
 topic = 'OTPs'
 

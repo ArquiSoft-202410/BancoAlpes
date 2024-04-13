@@ -34,5 +34,16 @@
           </form> 
         </div>
     </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Component D</h5>
+        <p class="card-text text-center">State: Inactive</p>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="instance" value="banco-alpes-d">
+          <button type="submit" class="btn btn-info">Activate</button>
+        </form> 
+      </div>
+  </div>
 </div>
 {% endblock %}

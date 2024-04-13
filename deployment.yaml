@@ -47,6 +47,22 @@ resources:
       ports:
       - 5432
 
+# Firewall rule
+- name: rabbit-firewall
+  type: compute.v1.firewall
+  properties:
+    network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+    priority: 1000
+    direction: INGRESS
+    sourceTags:
+    - services-firewall
+    targetTags:
+    - rabbit-firewall
+    allowed:
+    - IPProtocol: TCP
+      ports:
+      - 5672
+
 # Instance
 - type: compute.v1.instance
   name: kong-instance
@@ -139,7 +155,7 @@ resources:
   name: banco-alpes-a
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-standard-2
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -178,7 +194,7 @@ resources:
   name: banco-alpes-b
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-standard-2
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -217,7 +233,7 @@ resources:
   name: banco-alpes-c
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-standard-2
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -256,7 +272,7 @@ resources:
   name: banco-alpes-d
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-standard-2
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -289,3 +305,37 @@ resources:
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
+
+# Instance
+- type: compute.v1.instance
+  name: rabbit-instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+      networkIP: 10.128.0.57
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    tags:
+      items: 
+      - rabbit-firewall
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          sudo apt-get update
+          sudo apt install rabbitmq-server -y
+          sudo rabbitmq-plugins enable rabbitmq_management
+          sudo rabbitmqctl add_user banco_alpes banco_alpes_password
+          sudo rabbitmqctl set_user_tags banco_alpes administrator
+          sudo rabbitmqctl set_permissions -p / banco_alpes ".*" ".*" ".*"
