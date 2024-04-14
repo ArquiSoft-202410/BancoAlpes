@@ -185,6 +185,7 @@ resources:
           cd BancoAlpes
           sudo git pull
           sudo pip3 install -r requirements.txt
+          sudo -E python3 credentials.py
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
@@ -224,6 +225,7 @@ resources:
           cd BancoAlpes
           sudo git pull
           sudo pip3 install -r requirements.txt
+          sudo -E python3 credentials.py
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
@@ -263,6 +265,7 @@ resources:
           cd BancoAlpes
           sudo git pull
           sudo pip3 install -r requirements.txt
+          sudo -E python3 credentials.py
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
@@ -302,6 +305,7 @@ resources:
           cd BancoAlpes
           sudo git pull
           sudo pip3 install -r requirements.txt
+          sudo -E python3 credentials.py
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
