@@ -172,184 +172,184 @@ resources:
     tags:
       items: 
       - services-firewall
-    metadata:
-      items:
-      - key: startup-script
-        value: |
-          #!/bin/bash
-          sudo apt-get update
-          sudo apt install python3-pip -y
-          sudo mkdir /apps
-          cd /apps
-          sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
-          cd BancoAlpes
-          sudo git pull
-          sudo pip3 install -r requirements.txt
-          sudo -E python3 credentials.py
-          sudo python3 manage.py makemigrations
-          sudo python3 manage.py migrate
-          sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
+    # metadata:
+    #   items:
+    #   - key: startup-script
+    #     value: |
+    #       #!/bin/bash
+    #       sudo apt-get update
+    #       sudo apt install python3-pip -y
+    #       sudo mkdir /apps
+    #       cd /apps
+    #       sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
+    #       cd BancoAlpes
+    #       sudo git pull
+    #       sudo pip3 install -r requirements.txt
+    #       sudo -E python3 credentials.py
+    #       sudo python3 manage.py makemigrations
+    #       sudo python3 manage.py migrate
+    #       sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
 
-# Instance
-- type: compute.v1.instance
-  name: banco-alpes-b
-  properties:
-    zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
-    networkInterfaces:
-    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
-      networkIP: 10.128.0.54
-      accessConfigs:
-      - name: External NAT
-        type: ONE_TO_ONE_NAT
-    tags:
-      items: 
-      - services-firewall
-    metadata:
-      items:
-      - key: startup-script
-        value: |
-          #!/bin/bash
-          sudo apt-get update
-          sudo apt install python3-pip -y
-          sudo mkdir /apps
-          cd /apps
-          sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
-          cd BancoAlpes
-          sudo git pull
-          sudo pip3 install -r requirements.txt
-          sudo -E python3 credentials.py
-          sudo python3 manage.py makemigrations
-          sudo python3 manage.py migrate
-          sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
+# # Instance
+# - type: compute.v1.instance
+#   name: banco-alpes-b
+#   properties:
+#     zone: us-central1-a
+#     machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+#     disks:
+#     - deviceName: boot
+#       type: PERSISTENT
+#       boot: true
+#       autoDelete: true
+#       initializeParams:
+#         sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+#     networkInterfaces:
+#     - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+#       networkIP: 10.128.0.54
+#       accessConfigs:
+#       - name: External NAT
+#         type: ONE_TO_ONE_NAT
+#     tags:
+#       items: 
+#       - services-firewall
+#     metadata:
+#       items:
+#       - key: startup-script
+#         value: |
+#           #!/bin/bash
+#           sudo apt-get update
+#           sudo apt install python3-pip -y
+#           sudo mkdir /apps
+#           cd /apps
+#           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
+#           cd BancoAlpes
+#           sudo git pull
+#           sudo pip3 install -r requirements.txt
+#           sudo -E python3 credentials.py
+#           sudo python3 manage.py makemigrations
+#           sudo python3 manage.py migrate
+#           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
 
-# Instance
-- type: compute.v1.instance
-  name: banco-alpes-c
-  properties:
-    zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
-    networkInterfaces:
-    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
-      networkIP: 10.128.0.55
-      accessConfigs:
-      - name: External NAT
-        type: ONE_TO_ONE_NAT
-    tags:
-      items: 
-      - services-firewall
-    metadata:
-      items:
-      - key: startup-script
-        value: |
-          #!/bin/bash
-          sudo apt-get update
-          sudo apt install python3-pip -y
-          sudo mkdir /apps
-          cd /apps
-          sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
-          cd BancoAlpes
-          sudo git pull
-          sudo pip3 install -r requirements.txt
-          sudo -E python3 credentials.py
-          sudo python3 manage.py makemigrations
-          sudo python3 manage.py migrate
-          sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
+# # Instance
+# - type: compute.v1.instance
+#   name: banco-alpes-c
+#   properties:
+#     zone: us-central1-a
+#     machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+#     disks:
+#     - deviceName: boot
+#       type: PERSISTENT
+#       boot: true
+#       autoDelete: true
+#       initializeParams:
+#         sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+#     networkInterfaces:
+#     - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+#       networkIP: 10.128.0.55
+#       accessConfigs:
+#       - name: External NAT
+#         type: ONE_TO_ONE_NAT
+#     tags:
+#       items: 
+#       - services-firewall
+#     metadata:
+#       items:
+#       - key: startup-script
+#         value: |
+#           #!/bin/bash
+#           sudo apt-get update
+#           sudo apt install python3-pip -y
+#           sudo mkdir /apps
+#           cd /apps
+#           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
+#           cd BancoAlpes
+#           sudo git pull
+#           sudo pip3 install -r requirements.txt
+#           sudo -E python3 credentials.py
+#           sudo python3 manage.py makemigrations
+#           sudo python3 manage.py migrate
+#           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
 
-# Instance
-- type: compute.v1.instance
-  name: banco-alpes-d
-  properties:
-    zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
-    networkInterfaces:
-    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
-      networkIP: 10.128.0.56
-      accessConfigs:
-      - name: External NAT
-        type: ONE_TO_ONE_NAT
-    tags:
-      items: 
-      - services-firewall
-    metadata:
-      items:
-      - key: startup-script
-        value: |
-          #!/bin/bash
-          sudo apt-get update
-          sudo apt install python3-pip -y
-          sudo mkdir /apps
-          cd /apps
-          sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
-          cd BancoAlpes
-          sudo git pull
-          sudo pip3 install -r requirements.txt
-          sudo -E python3 credentials.py
-          sudo python3 manage.py makemigrations
-          sudo python3 manage.py migrate
-          sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
+# # Instance
+# - type: compute.v1.instance
+#   name: banco-alpes-d
+#   properties:
+#     zone: us-central1-a
+#     machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+#     disks:
+#     - deviceName: boot
+#       type: PERSISTENT
+#       boot: true
+#       autoDelete: true
+#       initializeParams:
+#         sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+#     networkInterfaces:
+#     - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+#       networkIP: 10.128.0.56
+#       accessConfigs:
+#       - name: External NAT
+#         type: ONE_TO_ONE_NAT
+#     tags:
+#       items: 
+#       - services-firewall
+#     metadata:
+#       items:
+#       - key: startup-script
+#         value: |
+#           #!/bin/bash
+#           sudo apt-get update
+#           sudo apt install python3-pip -y
+#           sudo mkdir /apps
+#           cd /apps
+#           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
+#           cd BancoAlpes
+#           sudo git pull
+#           sudo pip3 install -r requirements.txt
+#           sudo -E python3 credentials.py
+#           sudo python3 manage.py makemigrations
+#           sudo python3 manage.py migrate
+#           sudo nohup python3 manage.py runserver 0.0.0.0:8080 &
 
-# Instance
-- type: compute.v1.instance
-  name: rabbit-instance
-  properties:
-    zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
-    networkInterfaces:
-    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
-      networkIP: 10.128.0.57
-      accessConfigs:
-      - name: External NAT
-        type: ONE_TO_ONE_NAT
-    tags:
-      items: 
-      - rabbit-firewall
-    metadata:
-      items:
-      - key: startup-script
-        value: |
-          #!/bin/bash
-          sudo apt-get update
-          sudo apt install python3-pip -y
-          sudo mkdir /apps
-          cd /apps
-          sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
-          cd BancoAlpes
-          sudo git pull
-          sudo pip3 install -r requirements.txt
-          sudo python3 manage.py makemigrations
-          sudo python3 manage.py migrate
-          sudo apt install rabbitmq-server -y
-          sudo rabbitmq-plugins enable rabbitmq_management
-          sudo rabbitmqctl add_user banco_alpes banco_alpes_password
-          sudo rabbitmqctl set_user_tags banco_alpes administrator
-          sudo rabbitmqctl set_permissions -p / banco_alpes ".*" ".*" ".*"
-          sudo nohup python3 subscriber.py &
+# # Instance
+# - type: compute.v1.instance
+#   name: rabbit-instance
+#   properties:
+#     zone: us-central1-a
+#     machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
+#     disks:
+#     - deviceName: boot
+#       type: PERSISTENT
+#       boot: true
+#       autoDelete: true
+#       initializeParams:
+#         sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+#     networkInterfaces:
+#     - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+#       networkIP: 10.128.0.57
+#       accessConfigs:
+#       - name: External NAT
+#         type: ONE_TO_ONE_NAT
+#     tags:
+#       items: 
+#       - rabbit-firewall
+#     metadata:
+#       items:
+#       - key: startup-script
+#         value: |
+#           #!/bin/bash
+#           sudo apt-get update
+#           sudo apt install python3-pip -y
+#           sudo mkdir /apps
+#           cd /apps
+#           sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
+#           cd BancoAlpes
+#           sudo git pull
+#           sudo pip3 install -r requirements.txt
+#           sudo python3 manage.py makemigrations
+#           sudo python3 manage.py migrate
+#           sudo apt install rabbitmq-server -y
+#           sudo rabbitmq-plugins enable rabbitmq_management
+#           sudo rabbitmqctl add_user banco_alpes banco_alpes_password
+#           sudo rabbitmqctl set_user_tags banco_alpes administrator
+#           sudo rabbitmqctl set_permissions -p / banco_alpes ".*" ".*" ".*"
+#           sudo nohup python3 subscriber.py &
