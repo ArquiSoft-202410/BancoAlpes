@@ -15,5 +15,5 @@ data = {
     "universe_domain": "googleapis.com"
 }
 
-with open('completed_credentials.json', 'w') as json_file:
+with open('ASR2/static/json/credentials.json', 'w') as json_file:
     json.dump(data, json_file, indent=4)

@@ -8,7 +8,7 @@ gcloud deployment-manager deployments create banco-alpes-deployment --config dep
 echo "Waiting for the instances to start..."
 sleep 120
 
-INSTANCES_TO_STOP=("banco-alpes-b" "banco-alpes-c" "banco-alpes-d")
+INSTANCES_TO_STOP=("banco-alpes-c" "banco-alpes-d")
 for INSTANCE_NAME in "${INSTANCES_TO_STOP[@]}"
 do
    echo "Stopping the instance: $INSTANCE_NAME"
