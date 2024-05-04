@@ -15,8 +15,8 @@ data = {
     "universe_domain": "googleapis.com"
 }
 
-def run():
+def runCredentials():
     with open('ASR2/static/json/credentials.json', 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
-run()
+runCredentials()

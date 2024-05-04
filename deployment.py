@@ -1,8 +1,6 @@
 from googleapiclient import discovery
 from google.oauth2 import service_account
-import os
-from django.conf import settings
-from credentials import run as runCredentials
+from credentials import runCredentials
 
 runCredentials()
 
@@ -27,9 +25,9 @@ def turnOffApp():
 
 instances = ['db-instance', 'banco-alpes-a', 'rabbit-instance', 'kong-instance']
 
-def run():
+def runDeployment():
     for instance in instances:
         startInstance(instance)
         print(f'Starting {instance}')
 
-run()
+runDeployment()
