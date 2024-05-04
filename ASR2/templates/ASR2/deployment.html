@@ -81,4 +81,18 @@
       </div>
   </div>
 </div>
+<h2 class="fs-3 fw-bold mb-4 mt-5">Apagar aplicación</h2>
+<hr class="mt-1">
+<div class="row justify-content-start">
+  <div class="alert alert-danger ms-2" role="alert" style="width: auto;">
+    <h4 class="alert-heading">¡Atención!</h4>
+    <p>Si apagas la aplicación, todos los servidores se desconectarán.</p>
+    <hr>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="instance" value="turn-off">
+      <button type="submit" class="btn btn-danger">Apagar</button>
+    </form>
+  </div>
+</div>
 {% endblock %}

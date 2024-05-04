@@ -3,6 +3,7 @@ from googleapiclient import discovery
 from google.oauth2 import service_account
 import os
 from django.conf import settings
+from deployment import turnOffApp
 
 credentials_path = os.path.join(settings.BASE_DIR,'ASR2', 'static', 'json', 'credentials.json')
 credentials = service_account.Credentials.from_service_account_file(credentials_path)
@@ -16,7 +17,9 @@ def deployment(request):
 
     if request.method == 'POST':
         instance = request.POST.get('instance')
-        if instances[instance[-1]] == 'RUNNING':
+        if instance == 'turn-off':
+            turnOffApp()
+        elif instances[instance[-1]] == 'RUNNING':
             stopInstance(instance)
         else:
             startInstance(instance)

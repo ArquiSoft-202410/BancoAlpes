@@ -80,6 +80,8 @@
 
 {% block js %}
 <script>
+  localStorage.clear();
+
   const inputs = document.querySelectorAll(".input-field input"),
   button = document.querySelector(".checkButton");
 
@@ -119,7 +121,7 @@
 
 {% block content %}
 <h1>Confirmación OTP</h1>
-<di class="otpCheck">
+<div class="otpCheck">
   <div class="container">
     <header>
       <i class="bx bxs-check-shield"></i>
