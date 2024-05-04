@@ -285,65 +285,6 @@ resources:
 
 # Instance
 - type: compute.v1.instance
-  name: kong-instance
-  properties:
-    zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
-    networkInterfaces:
-    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
-      networkIP: 10.128.0.51
-      accessConfigs:
-      - name: External NAT
-        type: ONE_TO_ONE_NAT
-    tags:
-      items: 
-      - circuit-breaker
-    metadata:
-      items:
-      - key: startup-script
-        value: |
-          #!/bin/bash
-          sudo apt-get update
-          sudo dpkg --configure -a
-          sudo apt-get install -y docker.io git
-          sudo systemctl start docker
-          sudo systemctl enable docker
-          sudo apt install python3-pip -y
-
-          if [ ! -d "/apps" ]; then
-            sudo mkdir /apps
-            cd /apps
-            sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
-            cd BancoAlpes
-          else
-            cd /apps/BancoAlpes
-            sudo git pull
-          fi
-
-          sudo pip3 install -r requirements.txt
-          sudo -E python3 credentials.py
-          sudo python3 manage.py makemigrations
-          sudo python3 manage.py migrate
-          
-          sudo usermod -aG docker $USER
-          newgrp docker <<EONG
-          docker ps -aq -f name=kong | xargs -r docker rm -f
-          docker network ls -q -f name=kong-net | xargs -r docker network rm
-          docker network create kong-net
-          sudo docker run -d --name kong --network=kong-net -v "$(pwd):/kong/declarative/" -e "KONG_DATABASE=off" -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" -e "KONG_PROXY_ERROR_LOG=/dev/stderr" -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" -e "KONG_ADMIN_GUI_URL=http://localhost:8002" -p 8000:8000 -p 8001:8001 -p 8002:8002 kong/kong-gateway:2.7.2.0-alpine
-          sudo docker restart kong
-          EONG
-          sudo nohup python3 balancerSubscriber.py &
-
-# Instance
-- type: compute.v1.instance
   name: rabbit-instance
   properties:
     zone: us-central1-a
@@ -391,3 +332,62 @@ resources:
           sudo rabbitmqctl set_user_tags banco_alpes administrator
           sudo rabbitmqctl set_permissions -p / banco_alpes ".*" ".*" ".*"
           sudo nohup python3 subscriber.py &
+
+# Instance
+- type: compute.v1.instance
+  name: kong-instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/global/networks/default
+      networkIP: 10.128.0.51
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    tags:
+      items: 
+      - circuit-breaker
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          sudo apt-get update
+          sudo dpkg --configure -a
+          sudo apt-get install -y docker.io git
+          sudo systemctl start docker
+          sudo systemctl enable docker
+          sudo apt install python3-pip -y
+
+          if [ ! -d "/apps" ]; then
+            sudo mkdir /apps
+            cd /apps
+            sudo git clone https://github.com/ArquiSoft-202410/BancoAlpes.git
+            cd BancoAlpes
+          else
+            cd /apps/BancoAlpes
+            sudo git pull
+          fi
+
+          sudo pip3 install -r requirements.txt
+          sudo -E python3 credentials.py
+          sudo python3 manage.py makemigrations
+          sudo python3 manage.py migrate
+
+          sudo usermod -aG docker $USER
+          newgrp docker <<EONG
+          docker ps -aq -f name=kong | xargs -r docker rm -f
+          docker network ls -q -f name=kong-net | xargs -r docker network rm
+          docker network create kong-net
+          sudo docker run -d --name kong --network=kong-net -v "$(pwd):/kong/declarative/" -e "KONG_DATABASE=off" -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" -e "KONG_PROXY_ERROR_LOG=/dev/stderr" -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" -e "KONG_ADMIN_GUI_URL=http://localhost:8002" -p 8000:8000 -p 8001:8001 -p 8002:8002 kong/kong-gateway:2.7.2.0-alpine
+          sudo docker restart kong
+          EONG
+          sudo nohup python3 balancerSubscriber.py &
