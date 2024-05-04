@@ -15,7 +15,7 @@ def form(request):
                 'email': form.cleaned_data['email']
             }
             sendRequest(formData)
-            return redirect('request')
+            return render(request, "ASR1/check.html")
         else:
             print(form.errors)
     else:
