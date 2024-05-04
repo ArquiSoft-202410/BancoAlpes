@@ -3,6 +3,7 @@ from googleapiclient import discovery
 from google.oauth2 import service_account
 import os
 from django.conf import settings
+from ASR2.logic.producer import sendRequest
 from deployment import turnOffApp
 
 credentials_path = os.path.join(settings.BASE_DIR,'ASR2', 'static', 'json', 'credentials.json')
@@ -21,8 +22,10 @@ def deployment(request):
             turnOffApp()
         elif instances[instance[-1]] == 'RUNNING':
             stopInstance(instance)
+            sendRequest({'Action': 'Restart Load Balancer'})
         else:
             startInstance(instance)
+            sendRequest({'Action': 'Restart Load Balancer'})
         return redirect('deployment')
     return render(request, 'ASR2/deployment.html', context={'instances': instances})
 
