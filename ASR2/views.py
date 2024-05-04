@@ -10,7 +10,7 @@ service = discovery.build('compute', 'v1', credentials=credentials)
 
 def deployment(request):
     instances = {}
-    for instance in 'bcd':
+    for instance in 'abcd':
         instanceName = f'banco-alpes-{instance}'
         instances[instance] = getInstanceStatus(instanceName)['status']
 

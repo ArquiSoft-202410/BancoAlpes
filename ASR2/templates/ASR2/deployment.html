@@ -11,9 +11,18 @@
         <div class="card-body">
           <h5 class="card-title">Server A</h5>
           <div class="d-flex justify-content-center">
+            {% if instances.a == 'RUNNING' %}
             <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="state" width="50" height="50">
+            {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="state" width="50" height="50">
+            {% endif %}
           </div>
-          <p class="card-text text-center">State: Active</p>
+          <p class="card-text text-center">State: {% if instances.a == 'RUNNING' %}Active{% else %}Inactive{% endif %}</p>
+          <form method="post" class="row justify-content-center">
+            {% csrf_token %}
+            <input type="hidden" name="instance" value="banco-alpes-a">
+            <button type="submit" class="btn btn-info">{% if instances.a == 'RUNNING' %}Disconnect{% else %}Activate{% endif %}</button>
+          </form>
         </div>
     </div>
     <div class="card" style="width: 18rem;">
