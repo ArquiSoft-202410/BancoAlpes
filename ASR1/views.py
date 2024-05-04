@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import DatosPersonalesForm
 from .logic.producer import sendRequest
 
@@ -15,7 +15,7 @@ def form(request):
                 'email': form.cleaned_data['email']
             }
             sendRequest(formData)
-            return render(request, "ASR1/check.html")
+            return redirect('request')
         else:
             print(form.errors)
     else:
