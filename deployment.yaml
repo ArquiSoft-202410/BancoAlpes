@@ -315,6 +315,7 @@ resources:
           sudo apt-get install -y docker.io git
           sudo systemctl start docker
           sudo systemctl enable docker
+          sudo apt install python3-pip -y
 
           if [ ! -d "/apps" ]; then
             sudo mkdir /apps
@@ -326,6 +327,11 @@ resources:
             sudo git pull
           fi
 
+          sudo pip3 install -r requirements.txt
+          sudo -E python3 credentials.py
+          sudo python3 manage.py makemigrations
+          sudo python3 manage.py migrate
+          
           sudo usermod -aG docker $USER
           newgrp docker <<EONG
           docker ps -aq -f name=kong | xargs -r docker rm -f
