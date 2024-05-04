@@ -12,6 +12,22 @@ services:
 
 upstreams:
   - name: banco_alpes_upstream
+    healthchecks:
+      active:
+        type: http
+        http_path: /health
+        timeout: 2
+        concurrency: 10
+        healthy:
+          interval: 5
+          http_statuses: [200, 302]
+          successes: 2
+        unhealthy:
+          interval: 5
+          http_statuses: [400, 404, 500, 503]
+          tcp_failures: 2
+          timeouts: 2
+          http_failures: 2
     targets:
       - target: 10.128.0.53:8080
         weight: 100

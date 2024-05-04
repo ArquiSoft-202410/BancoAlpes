@@ -3,45 +3,71 @@
 {% block navDeploy %}active{% endblock %}
 
 {% block content %}
-<h2 class="fs-3 fw-bold mb-4 mt-2">Componentes desplegados</h2>
+<h2 class="fs-3 fw-bold mb-4 mt-2">Servidores desplegados</h2>
 <hr class="mt-1">
 <div class="row row-cols-auto justify-content-around">
     <div class="card" style="width: 18rem;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1383/1383395.png" class="card-img-top p-3" alt="Server A" style="width: 70%; margin: auto;">
         <div class="card-body">
-          <h5 class="card-title">Component A</h5>
+          <h5 class="card-title">Server A</h5>
+          <div class="d-flex justify-content-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="state" width="50" height="50">
+          </div>
           <p class="card-text text-center">State: Active</p>
         </div>
     </div>
     <div class="card" style="width: 18rem;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1383/1383395.png" class="card-img-top p-3" alt="Server B" style="width: 70%; margin: auto;">
         <div class="card-body">
-          <h5 class="card-title">Component B</h5>
-          <p class="card-text text-center">State: Inactive</p>
-          <form method="post">
+          <h5 class="card-title">Server B</h5>
+          <div class="d-flex justify-content-center">
+            {% if instances.b == 'RUNNING' %}
+            <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="state" width="50" height="50">
+            {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="state" width="50" height="50">
+            {% endif %}
+          </div>
+          <p class="card-text text-center">State: {% if instances.b == 'RUNNING' %}Active{% else %}Inactive{% endif %}</p>
+          <form method="post" class="row justify-content-center">
             {% csrf_token %}
             <input type="hidden" name="instance" value="banco-alpes-b">
-            <button type="submit" class="btn btn-info">Activate</button>
+            <button type="submit" class="btn btn-info">{% if instances.b == 'RUNNING' %}Disconnect{% else %}Activate{% endif %}</button>
           </form>        
         </div>
     </div>
     <div class="card" style="width: 18rem;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1383/1383395.png" class="card-img-top p-3" alt="Server C" style="width: 70%; margin: auto;">
         <div class="card-body">
-          <h5 class="card-title">Component C</h5>
-          <p class="card-text text-center">State: Inactive</p>
-          <form method="post">
+          <h5 class="card-title">Server C</h5>
+          <div class="d-flex justify-content-center">
+            {% if instances.c == 'RUNNING' %}
+            <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="state" width="50" height="50">
+            {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="state" width="50" height="50">
+            {% endif %}          </div>
+          <p class="card-text text-center">State: {% if instances.c == 'RUNNING' %}Active{% else %}Inactive{% endif %}</p>
+          <form method="post" class="row justify-content-center">
             {% csrf_token %}
             <input type="hidden" name="instance" value="banco-alpes-c">
-            <button type="submit" class="btn btn-info">Activate</button>
+            <button type="submit" class="btn btn-info">{% if instances.c == 'RUNNING' %}Disconnect{% else %}Active{% endif %}</button>
           </form> 
         </div>
     </div>
     <div class="card" style="width: 18rem;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1383/1383395.png" class="card-img-top p-3" alt="Server D" style="width: 70%; margin: auto;">
       <div class="card-body">
-        <h5 class="card-title">Component D</h5>
-        <p class="card-text text-center">State: Inactive</p>
-        <form method="post">
+        <h5 class="card-title">Server D</h5>
+        <div class="d-flex justify-content-center">
+          {% if instances.d == 'RUNNING' %}
+          <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="state" width="50" height="50">
+          {% else %}
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="state" width="50" height="50">
+          {% endif %}        </div>
+        <p class="card-text text-center">State: {% if instances.d == 'RUNNING' %}Active{% else %}Inactive{% endif %}</p>
+        <form method="post" class="row justify-content-center">
           {% csrf_token %}
           <input type="hidden" name="instance" value="banco-alpes-d">
-          <button type="submit" class="btn btn-info">Activate</button>
+          <button type="submit" class="btn btn-info">{% if instances.d == 'RUNNING' %}Disconnect{% else %}Activate{% endif %}</button>
         </form> 
       </div>
   </div>
