@@ -1,3 +1,4 @@
+import time
 from django.shortcuts import redirect, render
 from googleapiclient import discovery
 from google.oauth2 import service_account
@@ -22,9 +23,11 @@ def deployment(request):
             turnOffApp()
         elif instances[instance[-1]] == 'RUNNING':
             stopInstance(instance)
+            time.sleep(30)
             sendRequest({'Action': 'Restart Load Balancer'})
         else:
             startInstance(instance)
+            time.sleep(30)
             sendRequest({'Action': 'Restart Load Balancer'})
         return redirect('deployment')
     return render(request, 'ASR2/deployment.html', context={'instances': instances})
