@@ -23,11 +23,11 @@ def deployment(request):
             turnOffApp()
         elif instances[instance[-1]] == 'RUNNING':
             stopInstance(instance)
-            time.sleep(30)
+            time.sleep(120)
             sendRequest({'Action': 'Restart Load Balancer'})
         else:
             startInstance(instance)
-            time.sleep(30)
+            time.sleep(120)
             sendRequest({'Action': 'Restart Load Balancer'})
         return redirect('deployment')
     return render(request, 'ASR2/deployment.html', context={'instances': instances})
