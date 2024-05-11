@@ -19,6 +19,9 @@
                 <a class="nav-link {% block navRequest %}{% endblock %}" href="{% url 'request' %}">Adquirir TC</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link {% block navUsers %}{% endblock %}" href="{% url 'users' %}">Usuarios</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link {% block navDeploy %}{% endblock %}" href="{% url 'deployment' %}">Despliegue</a>
               </li>
             </ul>

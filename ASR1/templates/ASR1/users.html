@@ -1,0 +1,53 @@
+{% extends "app.html" %}
+
+{% block navUsers %}active{% endblock %}
+{% load static %}
+
+{% block content %}
+<h2 class="fs-2 fw-semibold mt-2">Usuarios</h2>
+<hr>
+<div class="container mb-5">
+    <div class="card">
+      <table class="table table-hover text-center table-striped">
+        <thead class="table">
+          <tr>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="cursor-pointer">
+                <th><img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="{{ user.nombres }}" width="50" height="50" class="d-inline-block align-text-center"></th>
+                <td class="fs-4 align-middle">{{ user.nombres }}</td>
+                <td class="fs-4 align-middle">{{ user.apellidos }}</td>
+                <td class="fs-4 align-middle">
+                    {% if user.state == True %}
+                    <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="Información confirmada" width="45" height="45" class="d-inline-block align-text-center">
+                    {% else %}
+                    <img src="https://cdn-icons-png.flaticon.com/512/4201/4201973.png" alt="Información no confirmada" width="50" height="50" class="d-inline-block align-text-center">
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="container text-center mt-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <img src="https://cdn-icons-png.flaticon.com/512/9426/9426997.png" alt="Información confirmada" width="45" height="45" class="d-inline-block align-text-center">
+            <br>
+            <p>Información confirmada</p>
+          </div>
+          <div class="col">
+            <img src="https://cdn-icons-png.flaticon.com/512/4201/4201973.png" alt="Información no confirmada" width="50" height="50" class="d-inline-block align-text-center">
+            <br>
+            <p>Información no confirmada</p>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock content %}

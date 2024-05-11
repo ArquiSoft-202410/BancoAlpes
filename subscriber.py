@@ -28,7 +28,7 @@ def send_sms(value):
     client = vonage.Client(key=settings.VONAGE_API_KEY, secret=settings.VONAGE_API_SECRET)
     sms = vonage.Sms(client)
     message = f"OTP: Hola, {value['nombres']}, para validar tu informacion ingresa el siguiente codigo: {value['codigo']}\n\n"
-    recipient_number = value['numero']
+    recipient_number = f'57{value['numero']}'
     response_data = sms.send_message({
         "from": "Vonage APIs",
         "to": recipient_number,
