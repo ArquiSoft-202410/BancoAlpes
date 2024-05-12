@@ -25,6 +25,29 @@ sudo chmod +x deployment.sh
 ```console
 gcloud deployment-manager deployments delete banco-alpes-deployment
 ```
+## Acceso a la base de datos
+Para acceder a la base de datos directamente desde su terminal (conexión SSH) y hacer consultas.
+```console
+psql -U banco_alpes -d banco_alpes_db
+```
+luego, escribir la contraseña de la base de datos.
+Algunos comandos útiles:
+```console
+# Ver todas las tablas de DB
+\dt
+
+# Datos de una tabla
+SELECT * FROM "<Nombre-Tabla>";
+
+# Actualizar información
+UPDATE "<Nombre-Tabla>" SET <párametro> = '<Nuevo-Valor>' WHERE id = <id-dato>;
+
+# Eliminar datos de una tabla
+DELETE FROM "<Nombre-Tabla>";
+
+# Salir
+\q
+```
 ### Ver procesos en segundo plano
 ```console
 ps -ef | grep python

@@ -94,6 +94,7 @@ resources:
           sudo apt-get install -y postgresql postgresql-contrib
           sudo -u postgres psql -c "CREATE USER banco_alpes WITH PASSWORD 'banco_alpes';"
           sudo -u postgres createdb -O banco_alpes banco_alpes_db
+          sudo sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/12/main/pg_hba.conf
           echo "host all all 0.0.0.0/0 trust" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
           echo "listen_addresses='*'" | sudo tee -a /etc/postgresql/12/main/postgresql.conf
           echo "max_connections=2000" | sudo tee -a /etc/postgresql/12/main/postgresql.conf

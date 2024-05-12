@@ -1,4 +1,5 @@
 from django.db import models
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
 
@@ -19,7 +20,8 @@ class SignatureKeys(models.Model):
     def create(cls):
         privateKey = rsa.generate_private_key(
             public_exponent=65537,
-            key_size=2048
+            key_size=2048,
+            backend=default_backend()
         )
         publicKey = privateKey.public_key()
         pemPrivateKey = privateKey.private_bytes(
