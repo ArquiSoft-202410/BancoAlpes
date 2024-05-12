@@ -105,7 +105,7 @@ resources:
   name: banco-alpes-a
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -151,7 +151,7 @@ resources:
   name: banco-alpes-b
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -197,7 +197,7 @@ resources:
   name: banco-alpes-c
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -243,7 +243,7 @@ resources:
   name: banco-alpes-d
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -339,7 +339,7 @@ resources:
   name: kong-instance
   properties:
     zone: us-central1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-micro
+    machineType: https://www.googleapis.com/compute/v1/projects/arquisoft-202410/zones/us-central1-a/machineTypes/e2-medium
     disks:
     - deviceName: boot
       type: PERSISTENT
